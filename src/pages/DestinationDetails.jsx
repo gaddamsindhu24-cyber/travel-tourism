@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getCountries } from "../services/api";
 
+
 const DestinationDetails = () => {
 
   const { name } = useParams();
@@ -116,6 +117,15 @@ const DestinationDetails = () => {
               ? country.population.toLocaleString()
               : "N/A"}
             </p>
+            <Link
+  to="/plan-trip"
+  state={{
+    destination: country.name,
+  }}
+  className="btn btn-success mt-3"
+>
+  🗺️ Plan Your Trip
+</Link>
 
 
           </div>

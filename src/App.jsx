@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
+import PlanTrip from "./pages/PlanTrip";
 
 import Login from "./pages/Login"; 
 import Signup from "./pages/Signup";
@@ -48,6 +49,10 @@ function App() {
           path="/signup"
           element={<Signup />}
            />
+           <Route
+  path="/plan-trip"
+  element={<PlanTrip />}
+/>
 
         <Route 
           path="*" 

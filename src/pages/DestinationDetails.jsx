@@ -75,7 +75,9 @@ const DestinationDetails = () => {
 
             <img
               src={
-                country.flags?.png ||
+                country.name === "Afghanistan" 
+                ? "https://flagcdn.com/w320/af.png"
+                : country.flags?.png ||
                 country.flags?.svg ||
                 country.flag
               }

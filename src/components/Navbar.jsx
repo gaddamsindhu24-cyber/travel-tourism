@@ -1,8 +1,30 @@
 
-import { Link, NavLink } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../services/firebase";
 
 function Navbar() {
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div className="container">
@@ -64,25 +86,36 @@ function Navbar() {
               </NavLink>
             </li>
 
-            {/* Login */}
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/login"
-              >
-                Login
-              </NavLink>
-            </li>
+            {!user ? (
+              <>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    to="/login"
+                  >
+                    Login
+                  </NavLink>
+                </li>
 
-            {/* Signup */}
-            <li className="nav-item">
-              <NavLink
-                className="nav-link"
-                to="/signup"
-              >
-                Sign Up
-              </NavLink>
-            </li>
+                <li className="nav-item">
+                  <NavLink
+                    className="nav-link"
+                    to="/signup"
+                  >
+                    Sign Up
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <button
+                  className="btn btn-outline-danger ms-2"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </li>
+            )}
 
           </ul>
         </div>
@@ -92,3 +125,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

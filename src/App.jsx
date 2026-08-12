@@ -13,6 +13,8 @@ import PlanTrip from "./pages/PlanTrip";
 
 import Login from "./pages/Login"; 
 import Signup from "./pages/Signup";
+import Packages from "./pages/Packages";
+import ExploreMap from "./pages/ExploreMap";
 function App() {
   return (
     <BrowserRouter>
@@ -53,6 +55,9 @@ function App() {
   path="/plan-trip"
   element={<PlanTrip />}
 />
+<Route path="/packages" element={<Packages />} />
+
+<Route path="/explore-map" element={<ExploreMap />} />
 
         <Route 
           path="*" 

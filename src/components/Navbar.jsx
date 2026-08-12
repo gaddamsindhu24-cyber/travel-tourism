@@ -68,6 +68,8 @@ function Navbar() {
               </NavLink>
             </li>
 
+            
+
             <li className="nav-item">
               <NavLink
                 className="nav-link"
@@ -76,6 +78,14 @@ function Navbar() {
                 About
               </NavLink>
             </li>
+
+            <Link className="nav-link" to="/packages">
+  Packages
+</Link>
+
+<Link className="nav-link" to="/explore-map">
+  Explore Map
+</Link>
 
             <li className="nav-item">
               <NavLink
